@@ -10,6 +10,7 @@ Imports:
     readr,
     readxl,
     stringr,
+    targets,
     tidyr
 Suggests: 
     gitcreds,
