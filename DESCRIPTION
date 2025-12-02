@@ -11,3 +11,5 @@ Imports:
     readxl,
     stringr,
     tidyr
+Suggests: 
+    usethis
