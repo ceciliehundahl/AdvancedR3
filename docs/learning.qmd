@@ -4,9 +4,8 @@ author: "Your Name"
 format: html
 ---
 
-## Header 1
-
 ```{r setup}
+#| include: false
 library("targets")
 library("tidyverse")
 tar_config_set(store = here::here("_targets"))
@@ -14,17 +13,20 @@ source(here::here("R/functions.R"))
 lipidomics <- tar_read(lipidomics)
 ```
 
+## Results
+
+### Basic stats table
+
 ```{r}
-# Code chunk
+#| echo: false
+tar_read(table_descriptive_stats) |>
+  knitr::kable(caption = "The mean and standard deviation of metabolites in the lipidomics dataset.")
 ```
 
-## Make a table
+### Plot of distributions
 
 ```{r}
-lipidomics |>
-  group_by(metabolite) |>
-  summarise(across(value, list(mean = mean, sd = sd))) |>
-  mutate(across(where(is.numeric), \(x) round(x, digits = 1))) |>
-  mutate(MeanSD = glue::glue("{value_mean} ({value_sd})")) |>
-  select(Metabolite = metabolite, `Mean SD` = MeanSD)
+#| echo: false
+#| warning: false
+create_plot_distributions(lipidomics)
 ```

@@ -6,6 +6,7 @@ Encoding: UTF-8
 Imports: 
     dplyr,
     fs,
+    ggplot2,
     glue,
     here,
     readr,
