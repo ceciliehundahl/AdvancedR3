@@ -6,10 +6,12 @@ Encoding: UTF-8
 Imports: 
     dplyr,
     fs,
+    glue,
     here,
     readr,
     readxl,
     stringr,
+    tarchetypes,
     targets,
     tidyr
 Suggests: 
@@ -18,3 +20,5 @@ Suggests:
     usethis
 URL: https://github.com/ceciliehundahl/AdvancedR3
 BugReports: https://github.com/ceciliehundahl/AdvancedR3/issues
+Depends: 
+    tidyverse
