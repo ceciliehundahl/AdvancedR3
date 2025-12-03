@@ -3,7 +3,10 @@ file|stem|b098d86261c1ba20|09442fac263aded2|2c530c1562a7fbd1|1735323524|data/lip
 lipidomics|stem|6c6c6cb50992ec11|e7a0b51b4c5fd316|49694a9a877ff783|-1498393010||t20425.5827698286s|s4135b|4135|rds|local|vector|||0.158||
 table_descriptive_stats|stem|dc180e867e027813|34e33bc9eaef7fce|d89f83ffb04b62cc|1291134815||t20425.5827705646s|s522b|522|rds|local|vector|||0.007||
 plot_distributions|stem|20b81af355e631f7|01ce942be37808d6|66937c9d4dd6cf08|222080706||t20425.5827741164s|s267852b|267852|rds|local|vector|||0.208||
+fit_model|function|908dcf400574dba6
+preprocess|function|9f2c144bdf50c270
 clean|function|ce06151f5b2133d2
 create_table_descriptive_stats|function|580dcd968259d07c
 create_plot_distributions|function|695467a9a7469b8c
-quartodoc|stem|ec9f444748204d6d|17ff11b3307356f6|b45d498880dcb388|-2025748750|docs/learning.html*docs/learning.qmd|t20425.6008189867s|s24572b|24572|file|local|vector|||3.543||
+create_model_results|function|e6bd43daa1da2eb7
+quartodoc|stem|cc9013381202da4d|17ff11b3307356f6|b45d498880dcb388|-2025748750|docs/learning.html*docs/learning.qmd|t20425.6295176482s|s24111b|24111|file|local|vector|||3.923||

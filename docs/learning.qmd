@@ -35,18 +35,5 @@ tar_read(plot_distributions)
 ### Preparing the data
 
 ```{r}
-just_cholesterol <- lipidomics |>
-  filter(metabolite == "Cholesterol") |>
-  preprocess()
-
-glm(
-  formula = class ~ value,
-  data = just_cholesterol,
-  family = binomial
-) |>
-  broom::tidy(exponentiate = TRUE) |>
-  mutate(
-    metabolite = unique(just_cholesterol$metabolite),
-    model = format(class ~value),
-    .before = everything())
+create_model_results(lipidomics)
 ```

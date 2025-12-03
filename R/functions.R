@@ -70,6 +70,36 @@ preprocess <- function(data) {
     )
 }
 
+#' Fit the model to the data and get the results.
+#'
+#' @param data The data to fit.
+#' @param model The formula.
+#'
+#' @returns A data frame of the results.
+#'
+fit_model <- function(data, model) {
+  glm(
+    formula = model,
+    data = data,
+    family = binomial
+  ) |>
+    broom::tidy(exponentiate = TRUE) |>
+    dplyr::mutate(
+      metabolite = unique(data$metabolite),
+      model = format(model),
+      .before = tidyselect::everything()
+    )
+}
 
-
-
+#' Create model results for report.
+#'
+#' @param data The lipidomics data.
+#'
+#' @returns A data frame of model results.
+#'
+create_model_results <- function(data) {
+  data |>
+    dplyr::filter(metabolite == "Cholesterol") |>
+    preprocess() |>
+    fit_model(class ~ value)
+}
