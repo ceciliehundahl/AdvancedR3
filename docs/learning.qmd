@@ -28,5 +28,5 @@ tar_read(table_descriptive_stats) |>
 ```{r}
 #| echo: false
 #| warning: false
-create_plot_distributions(lipidomics)
+tar_read(plot_distributions)
 ```

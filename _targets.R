@@ -62,6 +62,10 @@ list(
     name = table_descriptive_stats,
     command = create_table_descriptive_stats(lipidomics)
   ),
+  tar_target(
+    name = plot_distributions,
+    command = create_plot_distributions(lipidomics)
+  ),
   tar_quarto(
     name = quartodoc,
     path = "docs/learning.qmd"
