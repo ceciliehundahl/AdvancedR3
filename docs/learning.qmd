@@ -13,8 +13,6 @@ source(here::here("R/functions.R"))
 lipidomics <- tar_read(lipidomics)
 ```
 
-## Results
-
 ### Basic stats table
 
 ```{r}
@@ -26,7 +24,18 @@ tar_read(table_descriptive_stats) |>
 ### Plot of distributions
 
 ```{r}
+#| fig-cap: "Metabolite distributions"
 #| echo: false
 #| warning: false
 tar_read(plot_distributions)
+```
+
+## Statistical modelling
+
+### Preparing the data
+
+```{r}
+lipidomics |>
+  count(code, metabolite) |>
+  filter(n > 1)
 ```

@@ -56,7 +56,7 @@ list(
   ),
   tar_target(
     name = lipidomics,
-    command = readr::read_csv(file, show_col_types = FALSE)
+    command = readr::read_csv(file, show_col_types = FALSE) |> clean()
   ),
   tar_target(
     name = table_descriptive_stats,

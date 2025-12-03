@@ -7,10 +7,25 @@
 create_table_descriptive_stats <- function(data) {
   data |>
     dplyr::group_by(metabolite) |>
-    dplyr::summarise(dplyr::across(value, list(mean = mean, sd = sd))) |>
-    dplyr::mutate(dplyr::across(tidyselect::where(is.numeric), \(x) round(x, digits = 1))) |>
-    dplyr::mutate(MeanSD = glue::glue("{value_mean} ({value_sd})")) |>
-    dplyr::select(Metabolite = metabolite, `Mean SD` = MeanSD)
+    dplyr::summarise(dplyr::across(value, list(
+      mean = mean,
+      sd = sd,
+      median = median,
+      iqr = IQR
+    ))) |>
+    dplyr::mutate(dplyr::across(
+      tidyselect::where(is.numeric),
+      \(x) round(x, digits = 1)
+    )) |>
+    dplyr::mutate(
+      MeanSD = glue::glue("{value_mean} ({value_sd})"),
+      medianIQR = glue::glue("{value_median} ({value_iqr})")
+    ) |>
+    dplyr::select(
+      Metabolite = metabolite,
+      `Mean (SD)` = MeanSD,
+      `Median (IQR)` = medianIQR
+    )
 }
 
 #' Plot for basic distribution of metabolite data.
@@ -24,5 +39,19 @@ create_plot_distributions <- function(data) {
     ggplot2::ggplot(ggplot2::aes(x = value)) +
     ggplot2::geom_histogram() +
     ggplot2::facet_wrap(ggplot2::vars(metabolite), scales = "free") +
-    ggplot2::theme_minimal()
+    ggplot2::theme_classic() +
+    ggplot2::labs(x = "Concentration", y = "Count")
+}
+
+#' Do some cleaning to fix issues in the data.
+#'
+#' @param data The lipidomics data frame.
+#'
+#' @returns A data frame.
+#'
+clean <- function(data) {
+  data |>
+    dplyr::group_by(dplyr::pick(-value)) |>
+    dplyr::summarise(value = mean(value), .groups = "keep") |>
+    dplyr::ungroup()
 }
