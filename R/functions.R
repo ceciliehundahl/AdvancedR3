@@ -45,7 +45,7 @@ create_plot_distributions <- function(data) {
 
 #' Do some cleaning to fix issues in the data.
 #'
-#' @param data The lipidomics data frame.
+#' @param data The lipidomics data.
 #'
 #' @returns A data frame.
 #'
@@ -55,3 +55,21 @@ clean <- function(data) {
     dplyr::summarise(value = mean(value), .groups = "keep") |>
     dplyr::ungroup()
 }
+
+#' Preprocess the data.
+#'
+#' @param data The lipidomics data.
+#'
+#' @returns A data frame.
+#'
+preprocess <- function(data) {
+  data |>
+    mutate(
+      class = as.factor(class),
+      value = scale(value)
+    )
+}
+
+
+
+
