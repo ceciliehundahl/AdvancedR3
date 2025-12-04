@@ -64,7 +64,7 @@ clean <- function(data) {
 #'
 preprocess <- function(data) {
   data |>
-    mutate(
+    dplyr::mutate(
       class = as.factor(class),
       value = scale(value)
     )

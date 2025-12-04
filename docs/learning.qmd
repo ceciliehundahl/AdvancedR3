@@ -32,8 +32,7 @@ tar_read(plot_distributions)
 
 ## Statistical modelling
 
-### Preparing the data
-
 ```{r}
-create_model_results(lipidomics)
+#| echo: false
+tar_read(model_results)
 ```
